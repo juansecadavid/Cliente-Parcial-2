@@ -54,26 +54,23 @@ namespace Cliente
                         data[0] = (byte)0x06;
                         switch(command)
                         {
+                            case "R":
+                                data[1] = (byte)0x10;
+                                break;
                             case "F":
                                 data[1] = (byte)0x20;
                                 break;
                             case "A":
                                 data[1] = (byte)0x30;
                                 break;
-                            case "W":
-                                data[1] = (byte)0x60;
-                                break;
-                            case "P":
+                            case "T":
                                 data[1] = (byte)0x40;
                                 break;
                             case "IP":
-                                data[1] = (byte)0x70;
-                                break;
-                            case "R":
-                                data[1] = (byte)0x10;
-                                break;
-                            case "M":
                                 data[1] = (byte)0x50;
+                                break;
+                            case "W":
+                                data[1] = (byte)0x60;
                                 break;
                         }
                         
@@ -142,7 +139,19 @@ namespace Cliente
             }
             if (radioButton3.Checked)
             {
-                cola_tx.Enqueue("P" + textBox1.Text + "\r\n");
+                cola_tx.Enqueue("T" + "0" + "\r\n");
+            }
+            if (radioButton4.Checked)
+            {
+                cola_tx.Enqueue("W" + "0" + "\r\n");
+            }
+            if (radioButton5.Checked)
+            {
+                cola_tx.Enqueue("IP" + "0" + "\r\n");
+            }
+            if (radioButton6.Checked)
+            {
+                cola_tx.Enqueue("R" + "0" + "\r\n");
             }
 
             textBox1.Text = "";
@@ -169,6 +178,16 @@ namespace Cliente
                 }
 
             }
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Enviart(object sender, EventArgs e)
+        {
+            cola_tx.Enqueue("T"+"\r\n");
         }
     }
 }
